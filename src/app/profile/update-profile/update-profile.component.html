@@ -1,0 +1,14 @@
+<div  class="bg-profile">
+   <app-user-information [userlInfo]="profileInformation"  (onUserInformationChange)="onUserInformationChange($event) "/>
+   <app-contact-information [contactInfo]="profileInformation" (onContactInformationChange)="onContactInformationChange($event)" />
+   <app-educational-information [educationalInfo]="profileInformation.education" (onEducationalInformationChange)="onEducationalInformationChange($event)"/>
+   <app-experience-information [experienceInfo]="profileInformation.experience" (onExperienceInformationChange)="onExperienceInformationChange($event)"/>
+   <app-skill-information [skillInfo]="profileInformation.skill" (onSkillInformationChange)="onSkillInformationChange($event) "/>
+   <app-interests-information [interestsInfo]="profileInformation.interests" (onInterestsInformationChange)="onInterestsInformationChange($event)"/> 
+   <app-guild-information [guildInfo]="profileInformation.guild" (onGuildInformationChange)="onGuildInformationChange($event)"/>
+   <div class="d-flex justify-content-center gap-3">
+       <button class="btn btn-secondary" (click)="loginOutProfile()">Logout</button>
+       <button class="btn btn-primary" (click)="updateProfile()">Update</button>
+   </div>
+    
+</div>

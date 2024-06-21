@@ -1,0 +1,80 @@
+<div [formGroup]="formData" class="contact-Inf">
+    <div class="contact-Inf-bg">
+      <div class="letter-contact">
+        <div class="lt-contact">
+          CONTACT INFORMATION
+        </div>
+        <div class="bg-infContactAll">
+
+          <form class="bg-input-Contact">
+
+            <div class="form-addres">
+              <label style="color: #818181;" for="fname">ADDRESS</label>
+              <input class="input-addres" type="text" id="fname" name="fname" placeholder="Address" formControlName="address">
+              <span style="color: red;" *ngIf="checkRequired('address')">Required Field!</span>
+            </div>
+
+            <div class="select-contact row">
+              <div class="form-sub col-12 col-md-6 col-lg-3" style="display: flex; flex-direction: column;">
+                <label style="color: #818181;" for="fname">SUB DISTRICT</label>
+                <select ng-model="selectedName" ng-options="x for x in names" formControlName="subDistrict" [ngClass]="formData.get('subDistrict')?.value ? 'color-black' : 'f-sum-dis'">
+                  <option value="">Please select</option>
+                  <ng-container *ngFor="let item of displaySubDistricts(); let i= index">
+                    <option class="option-api"  [value]="item">{{item}}</option>
+                  </ng-container>
+                </select>
+                <span style="color: red;" *ngIf="checkRequired('subDistrict')">Required Field!</span>
+              </div>
+              <div class="form-district col-12 col-md-6 col-lg-3" style="display: flex; flex-direction: column;">
+                <label style="color: #818181;" for="fname">DISTRICT</label>
+                <select ng-model="selectedName" ng-options="x for x in names" formControlName="district" [ngClass]="formData.get('district')?.value ? 'color-black' : 'f-district'">
+                  <option value="">Please select</option>
+                  <ng-container *ngFor="let item of displayDistrict(); let i= index">
+                    <option class="option-api"  [value]="item">{{item}}</option>
+                  </ng-container>
+                </select>
+                <span style="color: red;" *ngIf="checkRequired('district')">Required Field!</span>
+              </div>
+              <div class="form-province col-12 col-md-6 col-lg-3" style="display: flex; flex-direction: column;">
+                <label style="color: #818181;" for="fname">PROVINCE</label>
+                <select ng-model="selectedName" ng-options="x for x in names" formControlName="province" [ngClass]="formData.get('province')?.value ? 'color-black' : 'f-province'">
+                  <option value="">Please select</option>
+                  <ng-container *ngFor="let item of provincesLists; let i= index">
+                    <option class="option-api"  [value]="item.name_en">{{item.name_en}}</option>
+                  </ng-container>
+                </select>
+                <span style="color: red;" *ngIf="checkRequired('province')">Required Field!</span>
+              </div>
+              <div class="form-postal-code col-12 col-md-6 col-lg-3" style="display: flex; flex-direction: column;">
+                <label style="color: #818181;" for="fname">POSTAL CODE</label>
+                <select ng-model="selectedName" ng-options="x for x in names"
+                  placeholder="Address" formControlName="province_code" [ngClass]="formData.get('province_code')?.value ? 'color-black' : 'f-postal-code'">
+                  <option value="">Please select</option>
+                  <ng-container *ngFor="let item of displayZipCode(); let i= index">
+                    <option class="option-api"  [value]="item">{{item}}</option>
+                  </ng-container>
+                </select>
+                <span style="color: red;" *ngIf="checkRequired('province_code')">Required Field!</span>
+              </div>
+
+            </div>
+
+            <div class="form-social-all">
+              <div class="form-FB" >
+                <label style="color: #818181;" for="fname">FACEBOOK</label>
+                <input class="input-FB" type="text" id="fname" name="fname" formControlName="facebook">
+              </div>
+              <div class="form-line">
+                <label style="color: #818181;" for="fname">LINE ID</label>
+                <input class="input-line" type="text" id="fname" name="fname" formControlName="lineId">
+              </div>
+              <div class="form-IG">
+                <label style="color: #818181;" for="fname">INSTAGREM</label>
+                <input class="input-IG" type="text" id="fname" name="fname" formControlName="instagram">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

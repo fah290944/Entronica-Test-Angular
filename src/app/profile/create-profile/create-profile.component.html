@@ -1,0 +1,14 @@
+<div  class="bg-profile">
+    <app-user-information (onUserInformationChange)="onUserInformationChange($event)"/>
+    
+    <app-contact-information (onContactInformationChange)="onContactInformationChange($event)" />
+    <app-educational-information (onEducationalInformationChange)="onEducationalInformationChange($event)"/>
+    <app-experience-information (onExperienceInformationChange)="onExperienceInformationChange($event)"/>
+    <app-skill-information (onSkillInformationChange)="onSkillInformationChange($event)"/>
+    <app-interests-information (onInterestsInformationChange)="onInterestsInformationChange($event)"/> 
+    <app-guild-information (onGuildInformationChange)="onGuildInformationChange($event)"/>
+    <div class="d-flex justify-content-center gap-3">
+        <button class="btn btn-secondary" (click)="loginProfile()">Back</button>
+        <button class="btn btn-primary" (click)="createProfile()">Submit</button>
+    </div>
+</div>

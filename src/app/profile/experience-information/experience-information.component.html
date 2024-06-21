@@ -1,0 +1,83 @@
+<div [formGroup]="formData" class="experience-Inf">
+    <div class="experience-Inf-bg">
+        <div class="letter-experience">
+            <div class="lt-experience">
+                EXPERIENCE INFORMATION
+            </div>
+            <div class="bt-experience">
+                <button class="bt-add-experience" data-bs-toggle="modal" data-bs-target="#experienceModal">ADD EXPERIENCE</button>
+            </div>
+            <div class="bg-infExperienceAll" formArrayName="experience">
+
+                <div class="timeline">
+                    <ng-container *ngIf="experiences?.length">
+                        <div class="mark-time" *ngFor="let data of experiences?.value ; let i= index">
+                            <div class="ruler">
+                                <div class="dot"></div>
+                                <div class="line"></div>
+                            </div>
+                            <div class="bg-experience">
+                                <div style="display: flex; flex-direction: column"  >
+                                    <div class="bg-company" >
+                                        <div style="word-break: break-all; padding-right: 10px;">
+                                            {{data.conpanyName}} 
+                                        </div>
+                                        <div>
+                                            {{data.yearStart}} - {{data.yearEnd}}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        {{data.positionName}}
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-close" aria-label="Close"
+                                (click)="clickDeleteExperience(i)"></button>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+
+            </div>
+
+            <div class="modal fade" id="experienceModal" tabindex="-1" aria-labelledby="experienceModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="experienceModalLabel">Add Experience</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                (click)="clearInput()"></button>
+                        </div>
+                        <div class="modal-body" style="display: flex; justify-content: center;">
+                            <form style=" gap: 60px; padding-bottom: 20px;">
+                                <div class="modal-form-conpanyName-experience"
+                                    style="display: flex; flex-direction: column; padding-bottom: 15px;">
+                                    <label style="color: #818181;" for="fname">Experience</label>
+                                    <input maxlength="120" type="text" name="univercity" [(ngModel)]="valueInputConpanyName">
+                                </div>
+                                <div class="modal-form-yearStart-experience" style="display: flex; flex-direction: column;">
+                                    <label style="color: #818181;" for="fname">Year Start</label>
+                                    <input numbersOnly [ngModel]="value" (ngModelChange)="onChange($event)"  type="text" name="yearStart" [(ngModel)]="valueInputYearStart">
+                                </div>
+                                <div class="modal-form-yearEnd-experience" style="display: flex; flex-direction: column;">
+                                    <label style="color: #818181;" for="fname">Year End</label>
+                                    <input numbersOnly [ngModel]="value" (ngModelChange)="onChange($event)" type="text" name="yearEnd" [(ngModel)]="valueInputYearEnd">
+                                </div>
+                                <div class="modal-form-positionName-experience" style="display: flex; flex-direction: column;">
+                                    <label style="color: #818181;" for="fname">Position</label>
+                                    <input maxlength="100" type="text" name="year" [(ngModel)]="valueInputpositionName">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="bt-modal-close" data-bs-dismiss="modal"
+                                (click)="clearInput()">Close</button>
+                            <button type="button" class="bt-modal" [disabled]="!valueInputConpanyName" [disabled]="!valueInputYearStart"
+                                [disabled]="!valueInputYearEnd" [disabled]="!valueInputpositionName" data-bs-dismiss="modal" (click)="addExperience()">Save
+                                changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

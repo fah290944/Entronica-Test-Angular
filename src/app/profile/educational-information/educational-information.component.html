@@ -1,0 +1,72 @@
+<div [formGroup]="formData" class="educational-Inf">
+    <div class="educational-Inf-bg">
+        <div class="letter-educational">
+            <div class="lt-educational">
+                EDUCATIONAL INFORMATION
+            </div>
+            <div class="bt-educational">
+                <button class="bt-add-educational" data-bs-toggle="modal" data-bs-target="#educationModal">ADD EDUCATIONAL</button>
+            </div>
+            <div class="bg-infEducationalAll" formArrayName="education">
+                <div class="timeline">
+                    <ng-container *ngIf="educations?.length">
+                        <div class="mark-time" *ngFor="let data of sortEducation() ; let i= index ">
+                            <div>{{data.year}}</div>
+                            <div class="ruler">
+                                <div class="dot"></div>
+                                <div class="line"></div>
+                            </div>
+                            <div>{{data.univercityName}}</div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+
+            <div class="modal fade" id="educationModal" tabindex="-1" aria-labelledby="educationModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="educationModalLabel">Add Educational</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                (click)="clearInput()"></button>
+                        </div>
+                        <div class="modal-body" style="display: flex; justify-content: center;">
+                            <form style=" gap: 60px; padding-bottom: 20px;">
+                                <div class="modal-form-name-education"
+                                    style="display: flex; flex-direction: column; padding-bottom: 15px;">
+                                    <label style="color: #818181;" for="fname">Educational</label>
+                                    <input maxlength="120" type="text" name="univercity" [(ngModel)]="valueInputUnivercity">
+                                </div>
+                                <div class="modal-form-education" style="display: flex; flex-direction: column;">
+                                    <label style="color: #818181;" for="fname">Year</label>
+                                    <input [ngModel]="value" (ngModelChange)="onChange($event)" type="text" name="year" [(ngModel)]="valueInputYear" numbersOnly>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-body" style="display: flex; flex-direction: column;" formArrayName="education">
+                            <div *ngFor="let data of educations?.value ; let i= index" style="width: 100%;
+                              display: grid;
+                              grid-template-columns: 50% 25% 10% ;
+                              padding-bottom: 10px;
+                              gap: 10px;
+                              align-items: center;">
+                                <div class="education-univercityName" style="text-overflow: ellipsis; overflow: hidden;" >{{data.univercityName}}</div>
+                                <div class="education-year">{{data.year}}</div>
+                                <fa-icon [icon]="faTimesCircle" class="iconInterests"
+                                    (click)="clickDeleteEducation(i)"></fa-icon>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="bt-modal-close" data-bs-dismiss="modal"
+                                (click)="clearInput()">Close</button>
+                            <button type="button" class="bt-modal" [disabled]="!valueInputYear"
+                                [disabled]="!valueInputUnivercity" data-bs-dismiss="modal" (click)="addEducation()">Save
+                                changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>

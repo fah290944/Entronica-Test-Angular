@@ -1,0 +1,46 @@
+<div [formGroup]="formData" class="guild-Inf">
+    <div class="guild-Inf-bg">
+        <div class="letter-guild">
+            <div class="lt-guild">
+                GUILD INFORMATION
+            </div>
+            <div class="bt-guild">
+                <button class="bt-add-guild" data-bs-toggle="modal" data-bs-target="#guildModal">ADD GUILD</button>
+            </div>
+            <div class="bg-infGuildAll" formArrayName="guild">
+                <ng-container *ngIf="guild?.value?.length">
+                    <div class="infGuildAll" *ngFor="let data of guild?.value | keyvalue ; let i= index ">
+                        <div class="Guildname">{{data?.value}}</div>
+                        <fa-icon [icon]="faTimesCircle" class="iconGuild" (click)="clickDeleteGuild(i)"></fa-icon>
+                    </div>
+                </ng-container>
+            </div>
+
+
+            <div class="modal fade" id="guildModal" tabindex="-1" aria-labelledby="guildModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" >
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="guildModalLabel">Add Guild</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="clearInput()" ></button>
+                        </div>
+                        <div class="modal-body" style="display: flex; justify-content: center;">
+                            <form style=" gap: 60px; padding-bottom: 20px;">
+                                <div class="modal-form-guild">
+                                  <input type="text" name="name" [(ngModel)]="valueInput" >
+                                </div>
+                              </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="bt-modal-close" data-bs-dismiss="modal" (click)="clearInput()">Close</button>
+                            <button type="button" class="bt-modal" [disabled]="!valueInput" data-bs-dismiss="modal" (click)="addGuild()">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+option:not([label=emtpy]) {
+    color: black;
+}
+
+.bg-profile {
+    width: 100%;
+    height: fit-content;
+    background-color: #efeded;
+    padding-bottom: 100px;
+}

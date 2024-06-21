@@ -1,0 +1,110 @@
+<div [formGroup]="formData" class="user-Inf">
+    <div class="user-Inf-bg">
+        <div class="lt-user">
+            USER INFORMATION
+        </div>
+        <div class="letter-user">
+            <div class="bg-all">
+                <div class="position-img">
+                    <div class="bg-edit-img">
+                        <label for="file-upload" class="custom-file-upload decorate-position">
+                            <img class="icon-camera" src="assets/icon/camera.png" alt="">
+                            <p style="margin: 0; padding-right: 20px;">EDIT COVER PHOTO </p>
+                        </label>
+                        <input id="file-upload" (change)="onFileSelect($event)" type="file" />
+                    </div>
+                    <ng-container *ngIf="formData.get('image')?.value?.name">
+                        <img [src]="formData.get('image')?.value?.name" alt="Uploaded Image">
+                    </ng-container>
+                    <ng-container *ngIf="!formData.get('image')?.value?.name">
+                        <div class="bg-profile-user"></div>
+                    </ng-container>
+                    <div class="profile-input">
+                        <div class="bg-circle-in">
+                            <div>
+                                <div class="profile-circle">
+                                    <ng-container *ngIf="!formData.get('imageCover')?.value?.name">
+                                        <div class="profile-user"></div>
+                                    </ng-container>
+                                    <ng-container *ngIf="formData.get('imageCover')?.value?.name">
+                                        <img class="profile-user-cover" [src]="formData.get('imageCover')?.value?.name" alt="Uploaded Image">
+                                    </ng-container>
+                                </div>
+                                <div class="bg-edit-profile-img">
+                                    <label for="file-upload-cover" class="custom-file-upload decorate-edit-profile">
+                                        <img class="icon-camera" src="assets/icon/camera.png" alt="">
+                                    </label>
+                                    <input id="file-upload-cover" (change)="onFileSelectCover($event)" type="file" />
+                                </div>
+                            </div>
+                            <div class="bg-lt-user">
+                                <div class="form-user-all">
+                                    <form class="bg-form-all">
+                                        <div class="form-username">
+                                            <label style="color: #818181;" for="fname">USERNAEM</label>
+                                            <input class="input-username" type="text" id="fname" name="fname" formControlName="userName">
+                                            <span style="color: red;" *ngIf="checkRequired('userName')">Required Field!</span>
+                                        </div>
+
+                                        <div class="form-nickname">
+                                            <label style="color: #818181;" for="fname">NICK NAME</label>
+                                            <input class="input-nickname" type="text" id="fname" name="fname"formControlName="nickName">
+                                            <span style="color: red;" *ngIf="checkRequired('nickName')">Required Field!</span>
+                                        </div>
+                                    </form>
+                                    <form class="bg-form-all">
+                                        <div class="form-firstname">
+                                            <label style="color: #818181;" for="fname">FIRST NAME</label>
+                                            <input class="input-firstname" type="text" id="fname" name="fname"
+                                                formControlName="firstName">
+                                                <span style="color: red;" *ngIf="checkRequired('firstName')">Required Field!</span>
+                                            </div>
+
+                                        <div class="form-lastname">
+                                            <label style="color: #818181;" for="fname">LAST NAME</label>
+                                            <input class="input-lastname" type="text" id="fname" name="fname"
+                                                formControlName="lastName">
+                                            <span style="color: red;" *ngIf="checkRequired('lastName')">Required Field!</span>
+                                            </div>
+                                    </form>
+                                    <form class="bg-form-all">
+                                        <div class="form-position" style="display: flex; flex-direction: column;">
+                                            <label style="color: #818181;" for="fname">POSITION</label>
+                                            <select formControlName="position"
+                                                [ngClass]="formData.get('position')?.value ? 'f-color' : 'f-position'">
+                                                <option value="">Please select</option>
+                                                <ng-container *ngFor="let item of positionLists; let i= index">
+                                                    <option class="option-api" [value]="item.name">{{item.name}}
+                                                    </option>
+                                                </ng-container>
+                                            </select>
+                                            <span style="color: red;" *ngIf="checkRequired('position')">Required Field!</span>
+                                        </div>
+                                        <div class="form-national">
+                                            <label style="color: #818181;" for="fname">NATIONALITY</label>
+                                            <input class="input-national" type="text" formControlName="nationality">
+                                            <span style="color: red;" *ngIf="checkRequired('nationality')">Required Field!</span>
+                                        </div>
+                                    </form>
+                                    <form class="bg-form-all">
+                                        <div class="form-tel">
+                                            <label style="color: #818181;" for="fname">TELEPHONE NUMBER</label>
+                                            <input  (ngModelChange)="onChange($event)" numbersOnly class="input-tel" type="text" formControlName="telephon">
+                                            <span style="color: red;" *ngIf="checkRequired('telephon')">Required Field!</span>
+                                        </div>
+
+                                        <div class="form-date">
+                                            <label style="color: #818181;" for="fname">STARING DATE</label>
+                                            <input type="date" name="fname" formControlName="startDate"
+                                                [ngClass]="formData.get('startDate')?.value ? 'input-date-color' : 'input-date'">
+                                            <span style="color: red;" *ngIf="checkRequired('startDate')">Required Field!</span>
+                                            </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

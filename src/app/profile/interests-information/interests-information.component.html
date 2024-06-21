@@ -1,0 +1,44 @@
+<div [formGroup]="formData"  class="interests-Inf">
+    <div class="interests-Inf-bg">
+        <div class="letter-interests">
+            <div class="lt-interests">
+                INTERESTS INFORMATION
+            </div>
+            <div class="bt-interests">
+                <button class="bt-add-interests" data-bs-toggle="modal" data-bs-target="#interestsModal">ADD INTERESTS</button>
+            </div>
+            <div class="bg-infInterestsAll" formArrayName="interests">
+                <ng-container *ngIf="interests?.value?.length">
+                    <div class="infInterestsAll" *ngFor="let data of interests?.value | keyvalue ; let i= index ">
+                        <div class="Interestsname">{{data.value}}</div>
+                        <fa-icon [icon]="faTimesCircle" class="iconInterests"
+                            (click)="clickDeleteInterests(i)"></fa-icon>
+                    </div>
+                </ng-container>
+            </div>
+
+            <div class="modal fade" id="interestsModal" tabindex="-1" aria-labelledby="interestsModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="interestsModalLabel">Add Interests</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="clearInput()" ></button>
+                    </div>
+                    <div class="modal-body" style="display: flex; justify-content: center;">
+                        <form style=" gap: 60px; padding-bottom: 20px;">
+                            <div class="modal-form-interests">
+                              <input type="text" name="name" [(ngModel)]="valueInput" >
+                            </div>
+                          </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="bt-modal-close" data-bs-dismiss="modal"  (click)="clearInput()">Close</button>
+                        <button type="button" class="bt-modal" [disabled]="!valueInput" data-bs-dismiss="modal" (click)="addInterests()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
